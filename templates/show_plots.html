@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Графики</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+<h2>Графики расходов</h2>
+<form method="post" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <label>С:</label>
+        <input type="date" name="start_date" class="form-control">
+    </div>
+    <div class="col-md-4">
+        <label>По:</label>
+        <input type="date" name="end_date" class="form-control">
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary mt-4">Обновить</button>
+    </div>
+</form>
+<div class="wrapper" style="display: flex;">
+    <div style="flex: 1;">
+        <h5>Столбчатый график</h5>
+        <img src="data:image/png;base64,{{ bar_plot }}" class="img-fluid"/>
+    </div>
+    <div class="mt-4" style="flex: 1;">
+        <h5>Круговая диаграмма</h5>
+        <img src="data:image/png;base64,{{ pie_chart }}" class="img-fluid"/>
+    </div>
+</div></br>
+</br>
+<h1>На вашем счету: {{ leftover }}</h1>
+<a href="{{ url_for('index') }}" class="btn btn-secondary mt-4">На главную</a>
+</body>
+</html>

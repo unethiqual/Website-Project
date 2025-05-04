@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Вход и регистрация</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5" style="background-color:white;">
+  <h2>Вход или регистрация</h2>
+  <form method="post">
+    <div class="form-group">
+      <label>Логин:</label>
+      <input type="text" name="login" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Пароль:</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <div id="register-fields" style="display:none;">
+      <div class="form-group">
+        <label id="one1">Имя:</label>
+        <input type="text" name="first_name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Фамилия:</label>
+        <input type="text" name="last_name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Почта:</label>
+        <input type="text" name="email_addr" class="form-control">
+      </div>
+    </div>
+    <input type="hidden" name="mode" id="form-mode" value="login">
+    <button type="submit" class="btn btn-primary mt-3">Отправить</button>
+  </form>
+  <input type="hidden" name="mode" id="color-mode" value="bright">
+  <button class="btn btn-link mt-3" onclick="toggleMode()">Переключить на регистрацию/вход</button>
+  <button class="btn btn-link mt-3" onclick="color()">Сменить тему</button>
+
+  <script>
+    function toggleMode() {
+      const registerFields = document.getElementById('register-fields');
+      const formMode = document.getElementById('form-mode');
+      if (formMode.value === 'login') {
+        registerFields.style.display = 'block';
+        formMode.value = 'register';
+      } else {
+        registerFields.style.display = 'none';
+        formMode.value = 'login';
+      }
+    }
+
+    function changeColor(color) {
+      document.body.style.background = color;
+    }
+
+    function color() {
+      const curr_color = document.getElementById('color-mode');
+      const labels = document.getElementsByTagName('label');
+      const headers2 = document.getElementsByTagName('h2');
+      if (curr_color.value === 'bright'){
+        curr_color.value = 'dark'
+        changeColor('black');
+        for(let label of labels) {
+          label.style.color = 'white';
+        }
+        for(let h2s of headers2) {
+          h2s.style.color = 'white';
+        }
+      } else {
+        curr_color.value = 'bright'
+        changeColor('white');
+        for(let label of labels) {
+          label.style.color = 'black';
+        }
+        for(let h2s of headers2) {
+          h2s.style.color = 'black';
+        }
+      }
+    }
+  </script>
+
+  {% with messages=get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+          <div class='alert alert-{{category}} text-center alert-dismissible fade show m-auto'>
+              {{ message }}
+          </div>
+      {% endfor %}
+  {% endwith %}
+</body>
+</html>
