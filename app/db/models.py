@@ -12,6 +12,7 @@ class User(db.Model):
     spent = db.Column(db.Float, default=0.0)
     req_code = db.Column(db.Integer, nullable=False)
     currency = db.Column(db.String(80), nullable=False, default='USD')
+    app_rate = db.Column(db.Integer, default=0)
 
 
 class Expense(db.Model):

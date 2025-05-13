@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Оценка приложения и создание запроса на ошибку</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5" style="background-color:white;">
+  <h2>Оцените приложение</h2>
+  <form method="post">
+    <div class="form-group" id="rate-fields" style="display:block;">
+      <label>Поставить оценку:</label>
+      <input type="number" name="ratenum" min="0" max="10" class="form-control" required>
+    </div>
+    <div id="bugfix-fields" style="display:none;">
+      <div class="form-group">
+        <label>Опишите ошибку:</label>
+        <input type="text" name="bug_descr" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Прикрепите скрин:</label>
+        <input type="file" name="err_file" class="form-control">
+      </div>
+    </div>
+    <input type="hidden" name="mode" id="form-mode" value="rate">
+    <button type="submit" class="btn btn-primary mt-3">Отправить</button>
+  </form>
+  <input type="hidden" name="mode" id="color-mode" value="bright">
+  <button class="btn btn-link mt-3" onclick="toggleMode()">Переключить режим</button>
+
+  <script>
+    function toggleMode() {
+      const heading = document.querySelector('h2')
+      const rateFields = document.getElementById('rate-fields');
+      const bugfixFields = document.getElementById('bugfix-fields');
+      const formMode = document.getElementById('form-mode');
+      if (formMode.value === 'rate') {
+        rateFields.style.display = 'none';
+        bugfixFields.style.display = 'block';
+        heading.textContent = 'Сообщить об ошибке'
+        formMode.value = 'bugfix';
+      } else {
+        rateFields.style.display = 'block';
+        bugfixFields.style.display = 'none';
+        heading.textContent = 'Оцените приложение'
+        formMode.value = 'rate';
+      }
+    }
+  </script>
+
+  {% with messages=get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+          <div class='alert alert-{{category}} text-center alert-dismissible fade show m-auto'>
+              {{ message }}
+          </div>
+      {% endfor %}
+  {% endwith %}
+</body>
+</html>
