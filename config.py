@@ -7,4 +7,4 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_secret_key'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    UPLOAD_FOLDER = './err_screen_upload'
+    UPLOAD_FOLDER = './errors_mess'

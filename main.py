@@ -203,15 +203,18 @@ def settings():
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
     root_logger.info(f"Feedback page accessed with method: {request.method}")
-    root_logger.info(f"Login/Signup page accessed with method: {request.method}")
     if request.method == 'POST':
         mode = request.form.get('mode')
         if mode == 'rate':
             user = User.query.get(session['user_id'])
             ratenum = request.form.get('ratenum')
             user.app_rate = int(ratenum)
-
+            flash("Спасибо за ваш отзыв!")
         else:
+            user = User.query.get(session['user_id'])
+            description = request.form.get('bug_descr')
+            with open(f"./errors_mess/{user.first_name}-{user.last_name}.txt", "a") as f:
+                f.write(description)
             file = request.files['file']
             if file and allowed_file(file.filename):
                 file.save(os.path.join(Config.UPLOAD_FOLDER, file.filename))
