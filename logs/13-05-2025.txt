@@ -1,0 +1,10 @@
+2025-05-13 23:47:30,423 - INFO - App started
+2025-05-13 23:47:31,340 - INFO - App started
+2025-05-13 23:47:33,436 - INFO - Index page accessed by user: None
+2025-05-13 23:47:35,519 - INFO - Login/Signup page accessed with method: GET
+2025-05-13 23:48:08,951 - INFO - Login/Signup page accessed with method: POST
+2025-05-13 23:48:10,463 - INFO - Email check page accessed with method: GET
+2025-05-13 23:48:29,133 - INFO - Email check page accessed with method: POST
+2025-05-13 23:48:29,147 - INFO - Index page accessed by user: Arseniy
+2025-05-13 23:48:32,147 - INFO - Feedback page accessed with method: GET
+2025-05-13 23:48:38,348 - INFO - Feedback page accessed with method: POST
